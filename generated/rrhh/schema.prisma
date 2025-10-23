@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/rrhh"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["RRHH", "public"]
+}
+
+model empleado {
+  id_empleado     Int                 @id @default(autoincrement())
+  rut             String              @unique
+  nombre          String
+  apellido        String
+  rol             String
+  email           String              @unique
+  telefono        String?
+  fecha_ingreso   DateTime
+  id_departamento Int
+  estado          String
+  fecha_baja      DateTime?
+  motivo_baja     String?
+  ausencias       rrhh_ausencia[]
+  roles           rrhh_empleado_rol[]
+  usuario         rrhh_usuario?
+  departamento    rrhh_departamento   @relation(fields: [id_departamento], references: [id_departamento])
+
+  @@index([id_departamento])
+  @@index([estado])
+  @@schema("public")
+}
+
+model rrhh_departamento {
+  id_departamento Int        @id @default(autoincrement())
+  nombre          String
+  empleados       empleado[]
+
+  @@schema("RRHH")
+}
+
+model rrhh_usuario {
+  id_usuario    Int      @id @default(autoincrement())
+  id_empleado   Int      @unique
+  password_hash String
+  activo        Boolean  @default(true)
+  empleado      empleado @relation(fields: [id_empleado], references: [id_empleado])
+
+  @@schema("RRHH")
+}
+
+model rrhh_rol {
+  id_rol      Int                 @id @default(autoincrement())
+  nombre      String              @unique
+  descripcion String?
+  empleados   rrhh_empleado_rol[]
+
+  @@schema("RRHH")
+}
+
+model rrhh_empleado_rol {
+  id_empleado Int
+  id_rol      Int
+  empleado    empleado @relation(fields: [id_empleado], references: [id_empleado])
+  rol         rrhh_rol @relation(fields: [id_rol], references: [id_rol])
+
+  @@id([id_empleado, id_rol])
+  @@schema("RRHH")
+}
+
+model rrhh_ausencia {
+  id_ausencia     Int      @id @default(autoincrement())
+  id_empleado     Int
+  tipo            String
+  fecha_inicio    DateTime
+  fecha_fin       DateTime
+  estado          String
+  motivo          String?
+  fecha_solicitud DateTime @default(now())
+  empleado        empleado @relation(fields: [id_empleado], references: [id_empleado])
+
+  @@schema("RRHH")
+}
