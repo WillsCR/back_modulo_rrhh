@@ -42,9 +42,34 @@ export class EmpleadoService {
       }
     };
 
-    return this.prisma.empleado.create({
-      data: empleadoData,
-    });
+      // Primero buscamos el rol que corresponde al empleado
+      const rolAsignado = await this.prisma.rrhh_rol.findFirst({
+        where: {
+          nombre: data.rol
+        }
+      });
+
+      if (!rolAsignado) {
+        throw new BadRequestException(`El rol ${data.rol} no existe en el sistema`);
+      }
+
+      // Crear el empleado y asignar el rol en una transacción
+      return this.prisma.$transaction(async (prisma) => {
+        // Crear el empleado
+        const nuevoEmpleado = await prisma.empleado.create({
+          data: empleadoData,
+        });
+
+        // Asignar el rol
+        await prisma.rrhh_empleado_rol.create({
+          data: {
+            id_empleado: nuevoEmpleado.id_empleado,
+            id_rol: rolAsignado.id_rol
+          }
+        });
+
+        return nuevoEmpleado;
+      });
   }
   async listarEmpleados(filtro?: string) {
     const where: Prisma.empleadoWhereInput = filtro ? {

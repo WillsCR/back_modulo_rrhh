@@ -72,6 +72,9 @@ export class AuthService {
                     { email: registerDto.email },
                     { rut: registerDto.rut }
                 ]
+            },
+            include: {
+                roles: true
             }
         });
 
@@ -116,13 +119,28 @@ export class AuthService {
             }
         });
 
-        // Asignar rol por defecto (EMPLEADO)
-        await this.prisma.rrhh_empleado_rol.create({
-            data: {
-                id_empleado: empleado.id_empleado,
-                id_rol: 3 // ID del rol EMPLEADO
+        // Solo asignar rol si es un empleado nuevo
+        if (!empleado.roles || empleado.roles.length === 0) {
+            // Buscar el rol EMPLEADO
+            const rolEmpleado = await this.prisma.rrhh_rol.findFirst({
+                where: {
+                    nombre: 'EMPLEADO'
+                }
+            });
+
+            if (!rolEmpleado) {
+                throw new BadRequestException('No se encontró el rol EMPLEADO en el sistema');
             }
-        });
+
+            // Asignar rol por defecto (EMPLEADO)
+            await this.prisma.rrhh_empleado_rol.create({
+                data: {
+                    id_empleado: empleado.id_empleado,
+                    id_rol: rolEmpleado.id_rol
+                }
+            });
+        }
+
         return {
             message: 'Usuario registrado exitosamente',
             empleado: {
