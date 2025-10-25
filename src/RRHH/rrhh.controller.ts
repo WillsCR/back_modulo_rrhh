@@ -46,6 +46,10 @@ export class RrhhController {
         return await this.empleadoService.findOne(id);
     }
 
+    @Get('empleados/by-email')
+    async obtenerEmpleadoPorEmail(@Query('email') email: string) {
+        return await this.empleadoService.getEmpleadoByMail(email);
+    }
     @Put('empleados/:id')
     async actualizarEmpleado(
         @Param('id', ParseIntPipe) id: number,

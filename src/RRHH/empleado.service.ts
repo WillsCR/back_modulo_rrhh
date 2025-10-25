@@ -156,6 +156,27 @@ export class EmpleadoService {
     return empleado;
   }
 
+  async getEmpleadoByMail(email: string) {
+    const empleado = await this.prisma.empleado.findUnique({
+      where: { email },
+      include: {
+        roles: {
+          include: {
+            rol: true
+          }
+        },
+        departamento: true,
+        ausencias: true
+      }
+    });
+
+    if (!empleado) {
+      throw new NotFoundException(`Empleado con email ${email} no encontrado`);
+    }
+
+    return empleado;
+  }
+
   async updateEmpleado(id: number, updateDto: UpdateEmpleadoDto) {
     await this.checkEmpleadoExists(id);
 
