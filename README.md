@@ -52,6 +52,7 @@ El servidor se iniciará en: [http://localhost:3000](http://localhost:3000)
 
 * **POST** `/auth/register` → Registro de usuarios
 * **POST** `/auth/login` → Inicio de sesión
+* **GET** `/auth/profile` → Obtener datos de Usuario por Token
 
 ##  Comandos útiles
 
