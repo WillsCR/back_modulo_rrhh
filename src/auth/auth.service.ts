@@ -25,7 +25,7 @@ export class AuthService {
         });
 
         if (!empleado) {
-            throw new UnauthorizedException('Credenciales incorrectas');
+            throw new UnauthorizedException('Credenciales incorrectas 1');
         }
 
         // Buscar usuario y verificar contraseña
@@ -39,7 +39,7 @@ export class AuthService {
 
         const passwordValid = await bcrypt.compare(loginDto.password, usuario.password_hash);
         if (!passwordValid) {
-            throw new UnauthorizedException('Credenciales incorrectas');
+            throw new UnauthorizedException('Credenciales incorrectas 2');
         }
 
         // Generar token JWT
@@ -139,7 +139,5 @@ export class AuthService {
         };
     }
 
-    async register2 (registerDto: RegisterDto) {
-        
-    }
+    
 }
