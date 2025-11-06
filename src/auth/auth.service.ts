@@ -78,7 +78,7 @@ export class AuthService {
             }
         });
 
-        // Verificar si ya tiene un usuario registrado
+        
         if (empleado) {
             const existingUser = await this.prisma.rrhh_usuario.findUnique({
                 where: { id_empleado: empleado.id_empleado }
@@ -88,25 +88,13 @@ export class AuthService {
                 throw new BadRequestException('Este empleado ya tiene un usuario registrado');
             }
 
-            // Si el empleado existe pero no tiene usuario, verificar que los datos coincidan
+            
             if (empleado.email !== registerDto.email || empleado.rut !== registerDto.rut) {
                 throw new BadRequestException('Los datos proporcionados no coinciden con el empleado existente');
             }
         } else {
-            // Si no existe el empleado, crearlo
-            empleado = await this.prisma.empleado.create({
-                data: {
-                    rut: registerDto.rut,
-                    nombre: registerDto.nombre,
-                    apellido: registerDto.apellido,
-                    email: registerDto.email,
-                    telefono: registerDto.telefono,
-                    rol: registerDto.rol,
-                    fecha_ingreso: new Date(),
-                    id_departamento: registerDto.id_departamento,
-                    estado: 'ACTIVO'
-                }
-            });
+            //EMPLEADO NO EXISTE, RECHAZAR REGISTRO
+            throw new BadRequestException('No se encontró un empleado con los datos proporcionados');
         }
 
         // Hashear contraseña y crear usuario
@@ -119,9 +107,9 @@ export class AuthService {
             }
         });
 
-        // Solo asignar rol si es un empleado nuevo
+        // Asignar rol si es un empleado nuevo
         if (!empleado.roles || empleado.roles.length === 0) {
-            // Buscar el rol EMPLEADO
+            
             const rolEmpleado = await this.prisma.rrhh_rol.findFirst({
                 where: {
                     nombre: 'EMPLEADO'
@@ -149,5 +137,9 @@ export class AuthService {
                 email: empleado.email
             }
         };
+    }
+
+    async register2 (registerDto: RegisterDto) {
+        
     }
 }
