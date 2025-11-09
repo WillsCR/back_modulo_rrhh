@@ -284,4 +284,31 @@ export class EmpleadoService {
       cantidad: empleados.find(e => e.id_departamento === dept.id_departamento)?._count?.id_empleado || 0
     }));
   }
+
+  async obetenerEmpleadoSinCuentas() {
+    // Busca todos los empleados que NO tengan usuario asociado
+    const empleadosSinCuenta = await this.prisma.empleado.findMany({
+        where: {
+            usuario: null,
+            estado: 'ACTIVO'
+        },
+        select: {
+            id_empleado: true,
+            rut: true,
+            nombre: true,
+            apellido: true,
+            email: true,
+            rol: true,
+            estado: true,
+            departamento: {
+                select: {
+                    nombre: true
+                }
+            }
+        }
+    });
+
+    return empleadosSinCuenta;
+}
+
 }

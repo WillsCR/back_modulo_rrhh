@@ -82,6 +82,11 @@ export class RrhhController {
         return await this.empleadoService.removerRol(idEmpleado, idRol);
     }
 
+    @Get('empleados/sin-cuenta')
+    async getEmpleadosSinCuenta() {
+        return await this.empleadoService.obetenerEmpleadoSinCuentas();
+    }
+    
     @Get('roles')
     async listarRoles() {
         return await this.empleadoService.listarRoles();
