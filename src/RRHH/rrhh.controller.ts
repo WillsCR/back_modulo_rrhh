@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Param, Put, Delete, Query, ParseIntPipe, HttpStatus, HttpCode } from "@nestjs/common";
 import { EmpleadoService } from "./empleado.service";
 import { AusenciaService } from "./ausencia.service";
-import { CreateEmpleadoDto } from './dto/empleado.dto';
+import { CreateEmpleadoDto, EmpleadoResponseDto } from './dto/empleado.dto';
 import { 
     CreateAusenciaDto, 
     UpdateAusenciaDto, 
@@ -20,6 +20,11 @@ export class RrhhController {
         private readonly empleadoService: EmpleadoService, 
         private readonly ausenciasService: AusenciaService
     ) {}
+
+    @Get('empleados/sin-cuenta')
+    async getEmpleadosSinCuenta(): Promise<EmpleadoResponseDto[]> {
+    return this.empleadoService.obtenerEmpleadosSinCuenta();
+    }
 
     // Endpoints de Empleados
     @Post('empleados')
@@ -82,10 +87,6 @@ export class RrhhController {
         return await this.empleadoService.removerRol(idEmpleado, idRol);
     }
 
-    @Get('empleados/sin-cuenta')
-    async getEmpleadosSinCuenta() {
-        return await this.empleadoService.obetenerEmpleadoSinCuentas();
-    }
     
     @Get('roles')
     async listarRoles() {

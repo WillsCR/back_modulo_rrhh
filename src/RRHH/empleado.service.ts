@@ -1,7 +1,7 @@
 
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateEmpleadoDto } from './dto/empleado.dto';
+import { CreateEmpleadoDto, EmpleadoResponseDto } from './dto/empleado.dto';
 import { Prisma } from '../../generated/rrhh';
 import { FiltroEmpleadosDto, UpdateEmpleadoDto } from './dto/rrhh.dto';
 
@@ -285,30 +285,30 @@ export class EmpleadoService {
     }));
   }
 
-  async obetenerEmpleadoSinCuentas() {
-    // Busca todos los empleados que NO tengan usuario asociado
-    const empleadosSinCuenta = await this.prisma.empleado.findMany({
-        where: {
-            usuario: null,
-            estado: 'ACTIVO'
-        },
+async obtenerEmpleadosSinCuenta(): Promise<EmpleadoResponseDto[]> {
+  const empleadosSinCuenta = await this.prisma.empleado.findMany({
+    where: {
+      usuario: null,
+      estado: 'ACTIVO', 
+    },
+    select: {
+      id_empleado: true,
+      rut: true,
+      nombre: true,
+      apellido: true,
+      email: true,
+      rol: true,
+      estado: true,
+      departamento: {
         select: {
-            id_empleado: true,
-            rut: true,
-            nombre: true,
-            apellido: true,
-            email: true,
-            rol: true,
-            estado: true,
-            departamento: {
-                select: {
-                    nombre: true
-                }
-            }
-        }
-    });
+          nombre: true,
+        },
+      },
+    },
+  });
 
-    return empleadosSinCuenta;
+  return empleadosSinCuenta;
 }
+
 
 }
