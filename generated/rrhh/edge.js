@@ -176,7 +176,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\guill\\Desktop\\SIstemas II ERP\\back_erp_rrhh\\generated\\rrhh",
+      "value": "C:\\Users\\naranja\\Documents\\GitHub\\back_modulo_rrhh\\generated\\rrhh",
       "fromEnvVar": null
     },
     "config": {
@@ -190,7 +190,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\guill\\Desktop\\SIstemas II ERP\\back_erp_rrhh\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\naranja\\Documents\\GitHub\\back_modulo_rrhh\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
