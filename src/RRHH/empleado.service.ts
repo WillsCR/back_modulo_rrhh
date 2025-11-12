@@ -498,4 +498,28 @@ export class EmpleadoService {
       }
     });
   }
+  async obtenerEmpleadosSinCuenta(): Promise<EmpleadoResponseDto[]> {
+  const empleadosSinCuenta = await this.prisma.empleado.findMany({
+    where: {
+      usuario: null,
+      estado: 'ACTIVO', 
+    },
+    select: {
+      id_empleado: true,
+      rut: true,
+      nombre: true,
+      apellido: true,
+      email: true,
+      rol: true,
+      estado: true,
+      departamento: {
+        select: {
+          nombre: true,
+        },
+      },
+    },
+  });
+
+  return empleadosSinCuenta;
+}
 }
