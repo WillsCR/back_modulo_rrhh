@@ -4,6 +4,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateEmpleadoDto } from './dto/empleado.dto';
 import { Prisma } from '../../generated/rrhh';
 import { FiltroEmpleadosDto, UpdateEmpleadoDto } from './dto/rrhh.dto';
+import { CreateSolicitudBajaDto, UpdateSolicitudBajaDto } from './dto/baja-empleados.dto';
 
 @Injectable()
 export class EmpleadoService {
@@ -283,5 +284,218 @@ export class EmpleadoService {
       departamento: dept.nombre,
       cantidad: empleados.find(e => e.id_departamento === dept.id_departamento)?._count?.id_empleado || 0
     }));
+  }
+
+  /**
+   * Crear una nueva solicitud de baja
+   */
+  async crearSolicitudBaja(createSolicitudBajaDto: CreateSolicitudBajaDto) {
+    const { id_empleado, motivo } = createSolicitudBajaDto;
+
+    // Verificar que el empleado existe y está activo
+    const empleado = await this.prisma.empleado.findUnique({
+      where: { id_empleado }
+    });
+
+    if (!empleado) {
+      throw new NotFoundException(`Empleado #${id_empleado} no encontrado`);
+    }
+
+    if (empleado.estado !== 'ACTIVO') {
+      throw new BadRequestException('Solo empleados activos pueden solicitar baja');
+    }
+
+    // Verificar si ya existe una solicitud pendiente
+    const solicitudPendiente = await this.prisma.rrhh_solicitud_baja.findFirst({
+      where: {
+        id_empleado,
+        estado: 'PENDIENTE'
+      }
+    });
+
+    if (solicitudPendiente) {
+      throw new BadRequestException('Ya existe una solicitud de baja pendiente para este empleado');
+    }
+
+    // Crear la solicitud de baja
+    return this.prisma.rrhh_solicitud_baja.create({
+      data: {
+        id_empleado,
+        motivo,
+        estado: 'PENDIENTE',
+        fecha_solicitud: new Date()
+      },
+      include: {
+        empleado: {
+          select: {
+            nombre: true,
+            apellido: true,
+            rut: true,
+            departamento: {
+              select: {
+                nombre: true
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  /**
+   * Obtener todas las solicitudes de baja
+   */
+  async obtenerSolicitudesBaja(estado?: string) {
+    const where = estado ? { estado } : {};
+
+    return this.prisma.rrhh_solicitud_baja.findMany({
+      where,
+      include: {
+        empleado: {
+          select: {
+            nombre: true,
+            apellido: true,
+            rut: true,
+            email: true,
+            fecha_ingreso: true,
+            departamento: {
+              select: {
+                nombre: true
+              }
+            }
+          }
+        }
+      },
+      orderBy: {
+        fecha_solicitud: 'desc'
+      }
+    });
+  }
+
+  /**
+   * Obtener solicitudes de baja por empleado
+   */
+  async obtenerSolicitudesBajaPorEmpleado(id_empleado: number) {
+    await this.checkEmpleadoExists(id_empleado);
+
+    return this.prisma.rrhh_solicitud_baja.findMany({
+      where: { id_empleado },
+      include: {
+        empleado: {
+          select: {
+            nombre: true,
+            apellido: true,
+            rut: true
+          }
+        }
+      },
+      orderBy: {
+        fecha_solicitud: 'desc'
+      }
+    });
+  }
+
+  /**
+   * Actualizar estado de una solicitud de baja
+   */
+  async actualizarSolicitudBaja(id_solicitud_baja: number, updateSolicitudBajaDto: UpdateSolicitudBajaDto) {
+    const { estado, motivo_resolucion } = updateSolicitudBajaDto;
+
+    // Verificar que la solicitud existe
+    const solicitud = await this.prisma.rrhh_solicitud_baja.findUnique({
+      where: { id_solicitud_baja },
+      include: {
+        empleado: true
+      }
+    });
+
+    if (!solicitud) {
+      throw new NotFoundException(`Solicitud de baja #${id_solicitud_baja} no encontrada`);
+    }
+
+    if (solicitud.estado !== 'PENDIENTE') {
+      throw new BadRequestException('Solo se pueden actualizar solicitudes pendientes');
+    }
+
+    // Usar transacción para actualizar solicitud y posiblemente dar de baja al empleado
+    return this.prisma.$transaction(async (prisma) => {
+      // Actualizar la solicitud
+      const solicitudActualizada = await prisma.rrhh_solicitud_baja.update({
+        where: { id_solicitud_baja },
+        data: {
+          estado,
+          motivo_resolucion,
+          fecha_resolucion: new Date()
+        },
+        include: {
+          empleado: {
+            select: {
+              nombre: true,
+              apellido: true,
+              rut: true
+            }
+          }
+        }
+      });
+
+      // Si la solicitud es aprobada, dar de baja al empleado
+      if (estado === 'APROBADA') {
+        await prisma.empleado.update({
+          where: { id_empleado: solicitud.id_empleado },
+          data: {
+            estado: 'INACTIVO',
+            fecha_baja: new Date(),
+            motivo_baja: motivo_resolucion || 'Baja aprobada por solicitud'
+          }
+        });
+      }
+
+      return solicitudActualizada;
+    });
+  }
+
+  /**
+   * Obtener estadísticas de solicitudes de baja
+   */
+  async obtenerEstadisticasSolicitudesBaja() {
+    const [total, pendientes, aprobadas, rechazadas] = await Promise.all([
+      this.prisma.rrhh_solicitud_baja.count(),
+      this.prisma.rrhh_solicitud_baja.count({ where: { estado: 'PENDIENTE' } }),
+      this.prisma.rrhh_solicitud_baja.count({ where: { estado: 'APROBADA' } }),
+      this.prisma.rrhh_solicitud_baja.count({ where: { estado: 'RECHAZADA' } })
+    ]);
+
+    return {
+      total,
+      pendientes,
+      aprobadas,
+      rechazadas
+    };
+  }
+
+  /**
+   * Cancelar una solicitud de baja pendiente
+   */
+  async cancelarSolicitudBaja(id_solicitud_baja: number) {
+    const solicitud = await this.prisma.rrhh_solicitud_baja.findUnique({
+      where: { id_solicitud_baja }
+    });
+
+    if (!solicitud) {
+      throw new NotFoundException(`Solicitud de baja #${id_solicitud_baja} no encontrada`);
+    }
+
+    if (solicitud.estado !== 'PENDIENTE') {
+      throw new BadRequestException('Solo se pueden cancelar solicitudes pendientes');
+    }
+
+    return this.prisma.rrhh_solicitud_baja.update({
+      where: { id_solicitud_baja },
+      data: {
+        estado: 'CANCELADA',
+        fecha_resolucion: new Date(),
+        motivo_resolucion: 'Cancelada por el solicitante'
+      }
+    });
   }
 }

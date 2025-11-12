@@ -135,6 +135,16 @@ exports.Prisma.EmpleadoScalarFieldEnum = {
   motivo_baja: 'motivo_baja'
 };
 
+exports.Prisma.Rrhh_solicitud_bajaScalarFieldEnum = {
+  id_solicitud_baja: 'id_solicitud_baja',
+  id_empleado: 'id_empleado',
+  fecha_solicitud: 'fecha_solicitud',
+  motivo: 'motivo',
+  estado: 'estado',
+  fecha_resolucion: 'fecha_resolucion',
+  motivo_resolucion: 'motivo_resolucion'
+};
+
 exports.Prisma.Rrhh_departamentoScalarFieldEnum = {
   id_departamento: 'id_departamento',
   nombre: 'nombre'
@@ -187,6 +197,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   empleado: 'empleado',
+  rrhh_solicitud_baja: 'rrhh_solicitud_baja',
   rrhh_departamento: 'rrhh_departamento',
   rrhh_usuario: 'rrhh_usuario',
   rrhh_rol: 'rrhh_rol',

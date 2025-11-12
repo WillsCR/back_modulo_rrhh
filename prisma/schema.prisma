@@ -26,10 +26,27 @@ model empleado {
   roles           rrhh_empleado_rol[]
   usuario         rrhh_usuario?
   departamento    rrhh_departamento   @relation(fields: [id_departamento], references: [id_departamento])
+  solicitudes_baja rrhh_solicitud_baja[]
 
   @@index([id_departamento])
   @@index([estado])
   @@schema("public")
+}
+
+model rrhh_solicitud_baja {
+  id_solicitud_baja Int       @id @default(autoincrement())
+  id_empleado       Int
+  fecha_solicitud   DateTime  @default(now())
+  motivo            String
+  estado            String    @default("PENDIENTE") // PENDIENTE, APROBADA, RECHAZADA
+  fecha_resolucion  DateTime?
+  motivo_resolucion String?
+  empleado          empleado  @relation(fields: [id_empleado], references: [id_empleado])
+
+  @@index([id_empleado])
+  @@index([estado])
+  @@index([fecha_solicitud])
+  @@schema("RRHH")
 }
 
 model rrhh_departamento {
@@ -82,3 +99,4 @@ model rrhh_ausencia {
 
   @@schema("RRHH")
 }
+

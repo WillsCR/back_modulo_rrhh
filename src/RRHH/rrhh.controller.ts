@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Param, Put, Delete, Query, ParseIntPipe, HttpStatus, HttpCode } from "@nestjs/common";
+import { Body, Controller, Get, Post, Param, Put, Delete, Query, ParseIntPipe, HttpStatus, HttpCode, Patch } from "@nestjs/common";
 import { EmpleadoService } from "./empleado.service";
 import { AusenciaService } from "./ausencia.service";
 import { CreateEmpleadoDto } from './dto/empleado.dto';
@@ -13,6 +13,7 @@ import {
     UpdateEmpleadoDto,
     BajaEmpleadoDto
 } from './dto/rrhh.dto';
+import { CreateSolicitudBajaDto, UpdateSolicitudBajaDto } from "./dto/baja-empleados.dto";
 
 @Controller('rrhh')
 export class RrhhController {
@@ -81,12 +82,12 @@ export class RrhhController {
     ) {
         return await this.empleadoService.removerRol(idEmpleado, idRol);
     }
-
+    // Endpoints de Roles
     @Get('roles')
     async listarRoles() {
         return await this.empleadoService.listarRoles();
     }
-
+    // Endpoints de Ausencias
     @Post('ausencias')
     @HttpCode(HttpStatus.CREATED)
     async solicitarAusencia(@Body() createAusenciaDto: CreateAusenciaDto) {
@@ -124,12 +125,12 @@ export class RrhhController {
         return await this.ausenciasService.actualizarEstado(id, updateDto.estado);
     }
 
- 
+     // Estadísticas de RRHH
     @Get('dashboard/ausencias-por-mes')
     async ausenciasPorMes(@Query('año') año: number) {
         return await this.ausenciasService.obtenerEstadisticasPorMes(año);
     }
-
+    
     @Get('dashboard/empleados-por-departamento')
     async empleadosPorDepartamentoStats() {
         return await this.empleadoService.obtenerEstadisticasPorDepartamento();
@@ -138,5 +139,35 @@ export class RrhhController {
     @Get('dashboard/ausencias-por-tipo')
     async ausenciasPorTipo(@Query() filtro: FiltroAusenciasDto) {
         return await this.ausenciasService.obtenerEstadisticasPorTipo(filtro);
+    }
+
+    //
+
+    @Post('solicitud-baja')
+    async crearSolicitudBaja(@Body() createSolicitudBajaDto: CreateSolicitudBajaDto) {
+  return this.empleadoService.crearSolicitudBaja(createSolicitudBajaDto);
+    }
+
+    @Get('solicitud-baja')
+    async obtenerSolicitudesBaja(@Query('estado') estado?: string) {
+    return this.empleadoService.obtenerSolicitudesBaja(estado);
+    }
+
+    @Patch('solicitud-baja/:id')
+    async actualizarSolicitudBaja(
+  @Param('id') id: string,
+  @Body() updateSolicitudBajaDto: UpdateSolicitudBajaDto
+    ) {
+    return this.empleadoService.actualizarSolicitudBaja(parseInt(id), updateSolicitudBajaDto);
+    }
+
+    @Get('solicitud-baja/empleado/:idEmpleado')
+    async obtenerSolicitudesPorEmpleado(@Param('idEmpleado') idEmpleado: string) {
+  return this.empleadoService.obtenerSolicitudesBajaPorEmpleado(parseInt(idEmpleado));
+    }
+
+    @Get('solicitud-baja/estadisticas')
+    async obtenerEstadisticasSolicitudes() {
+  return this.empleadoService.obtenerEstadisticasSolicitudesBaja();
     }
 }

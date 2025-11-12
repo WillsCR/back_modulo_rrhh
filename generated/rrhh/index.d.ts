@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type empleado = $Result.DefaultSelection<Prisma.$empleadoPayload>
 /**
+ * Model rrhh_solicitud_baja
+ * 
+ */
+export type rrhh_solicitud_baja = $Result.DefaultSelection<Prisma.$rrhh_solicitud_bajaPayload>
+/**
  * Model rrhh_departamento
  * 
  */
@@ -171,6 +176,16 @@ export class PrismaClient<
     * ```
     */
   get empleado(): Prisma.empleadoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.rrhh_solicitud_baja`: Exposes CRUD operations for the **rrhh_solicitud_baja** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Rrhh_solicitud_bajas
+    * const rrhh_solicitud_bajas = await prisma.rrhh_solicitud_baja.findMany()
+    * ```
+    */
+  get rrhh_solicitud_baja(): Prisma.rrhh_solicitud_bajaDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.rrhh_departamento`: Exposes CRUD operations for the **rrhh_departamento** model.
@@ -662,6 +677,7 @@ export namespace Prisma {
 
   export const ModelName: {
     empleado: 'empleado',
+    rrhh_solicitud_baja: 'rrhh_solicitud_baja',
     rrhh_departamento: 'rrhh_departamento',
     rrhh_usuario: 'rrhh_usuario',
     rrhh_rol: 'rrhh_rol',
@@ -685,7 +701,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "empleado" | "rrhh_departamento" | "rrhh_usuario" | "rrhh_rol" | "rrhh_empleado_rol" | "rrhh_ausencia"
+      modelProps: "empleado" | "rrhh_solicitud_baja" | "rrhh_departamento" | "rrhh_usuario" | "rrhh_rol" | "rrhh_empleado_rol" | "rrhh_ausencia"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -760,6 +776,80 @@ export namespace Prisma {
           count: {
             args: Prisma.empleadoCountArgs<ExtArgs>
             result: $Utils.Optional<EmpleadoCountAggregateOutputType> | number
+          }
+        }
+      }
+      rrhh_solicitud_baja: {
+        payload: Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>
+        fields: Prisma.rrhh_solicitud_bajaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.rrhh_solicitud_bajaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.rrhh_solicitud_bajaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>
+          }
+          findFirst: {
+            args: Prisma.rrhh_solicitud_bajaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.rrhh_solicitud_bajaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>
+          }
+          findMany: {
+            args: Prisma.rrhh_solicitud_bajaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>[]
+          }
+          create: {
+            args: Prisma.rrhh_solicitud_bajaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>
+          }
+          createMany: {
+            args: Prisma.rrhh_solicitud_bajaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.rrhh_solicitud_bajaCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>[]
+          }
+          delete: {
+            args: Prisma.rrhh_solicitud_bajaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>
+          }
+          update: {
+            args: Prisma.rrhh_solicitud_bajaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>
+          }
+          deleteMany: {
+            args: Prisma.rrhh_solicitud_bajaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.rrhh_solicitud_bajaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.rrhh_solicitud_bajaUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>[]
+          }
+          upsert: {
+            args: Prisma.rrhh_solicitud_bajaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$rrhh_solicitud_bajaPayload>
+          }
+          aggregate: {
+            args: Prisma.Rrhh_solicitud_bajaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRrhh_solicitud_baja>
+          }
+          groupBy: {
+            args: Prisma.rrhh_solicitud_bajaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Rrhh_solicitud_bajaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.rrhh_solicitud_bajaCountArgs<ExtArgs>
+            result: $Utils.Optional<Rrhh_solicitud_bajaCountAggregateOutputType> | number
           }
         }
       }
@@ -1230,6 +1320,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     empleado?: empleadoOmit
+    rrhh_solicitud_baja?: rrhh_solicitud_bajaOmit
     rrhh_departamento?: rrhh_departamentoOmit
     rrhh_usuario?: rrhh_usuarioOmit
     rrhh_rol?: rrhh_rolOmit
@@ -1317,11 +1408,13 @@ export namespace Prisma {
   export type EmpleadoCountOutputType = {
     ausencias: number
     roles: number
+    solicitudes_baja: number
   }
 
   export type EmpleadoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ausencias?: boolean | EmpleadoCountOutputTypeCountAusenciasArgs
     roles?: boolean | EmpleadoCountOutputTypeCountRolesArgs
+    solicitudes_baja?: boolean | EmpleadoCountOutputTypeCountSolicitudes_bajaArgs
   }
 
   // Custom InputTypes
@@ -1347,6 +1440,13 @@ export namespace Prisma {
    */
   export type EmpleadoCountOutputTypeCountRolesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: rrhh_empleado_rolWhereInput
+  }
+
+  /**
+   * EmpleadoCountOutputType without action
+   */
+  export type EmpleadoCountOutputTypeCountSolicitudes_bajaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: rrhh_solicitud_bajaWhereInput
   }
 
 
@@ -1678,6 +1778,7 @@ export namespace Prisma {
     roles?: boolean | empleado$rolesArgs<ExtArgs>
     usuario?: boolean | empleado$usuarioArgs<ExtArgs>
     departamento?: boolean | rrhh_departamentoDefaultArgs<ExtArgs>
+    solicitudes_baja?: boolean | empleado$solicitudes_bajaArgs<ExtArgs>
     _count?: boolean | EmpleadoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["empleado"]>
 
@@ -1734,6 +1835,7 @@ export namespace Prisma {
     roles?: boolean | empleado$rolesArgs<ExtArgs>
     usuario?: boolean | empleado$usuarioArgs<ExtArgs>
     departamento?: boolean | rrhh_departamentoDefaultArgs<ExtArgs>
+    solicitudes_baja?: boolean | empleado$solicitudes_bajaArgs<ExtArgs>
     _count?: boolean | EmpleadoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type empleadoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1750,6 +1852,7 @@ export namespace Prisma {
       roles: Prisma.$rrhh_empleado_rolPayload<ExtArgs>[]
       usuario: Prisma.$rrhh_usuarioPayload<ExtArgs> | null
       departamento: Prisma.$rrhh_departamentoPayload<ExtArgs>
+      solicitudes_baja: Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_empleado: number
@@ -2162,6 +2265,7 @@ export namespace Prisma {
     roles<T extends empleado$rolesArgs<ExtArgs> = {}>(args?: Subset<T, empleado$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rrhh_empleado_rolPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     usuario<T extends empleado$usuarioArgs<ExtArgs> = {}>(args?: Subset<T, empleado$usuarioArgs<ExtArgs>>): Prisma__rrhh_usuarioClient<$Result.GetResult<Prisma.$rrhh_usuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     departamento<T extends rrhh_departamentoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, rrhh_departamentoDefaultArgs<ExtArgs>>): Prisma__rrhh_departamentoClient<$Result.GetResult<Prisma.$rrhh_departamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    solicitudes_baja<T extends empleado$solicitudes_bajaArgs<ExtArgs> = {}>(args?: Subset<T, empleado$solicitudes_bajaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2666,6 +2770,30 @@ export namespace Prisma {
   }
 
   /**
+   * empleado.solicitudes_baja
+   */
+  export type empleado$solicitudes_bajaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    where?: rrhh_solicitud_bajaWhereInput
+    orderBy?: rrhh_solicitud_bajaOrderByWithRelationInput | rrhh_solicitud_bajaOrderByWithRelationInput[]
+    cursor?: rrhh_solicitud_bajaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Rrhh_solicitud_bajaScalarFieldEnum | Rrhh_solicitud_bajaScalarFieldEnum[]
+  }
+
+  /**
    * empleado without action
    */
   export type empleadoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2681,6 +2809,1128 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: empleadoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model rrhh_solicitud_baja
+   */
+
+  export type AggregateRrhh_solicitud_baja = {
+    _count: Rrhh_solicitud_bajaCountAggregateOutputType | null
+    _avg: Rrhh_solicitud_bajaAvgAggregateOutputType | null
+    _sum: Rrhh_solicitud_bajaSumAggregateOutputType | null
+    _min: Rrhh_solicitud_bajaMinAggregateOutputType | null
+    _max: Rrhh_solicitud_bajaMaxAggregateOutputType | null
+  }
+
+  export type Rrhh_solicitud_bajaAvgAggregateOutputType = {
+    id_solicitud_baja: number | null
+    id_empleado: number | null
+  }
+
+  export type Rrhh_solicitud_bajaSumAggregateOutputType = {
+    id_solicitud_baja: number | null
+    id_empleado: number | null
+  }
+
+  export type Rrhh_solicitud_bajaMinAggregateOutputType = {
+    id_solicitud_baja: number | null
+    id_empleado: number | null
+    fecha_solicitud: Date | null
+    motivo: string | null
+    estado: string | null
+    fecha_resolucion: Date | null
+    motivo_resolucion: string | null
+  }
+
+  export type Rrhh_solicitud_bajaMaxAggregateOutputType = {
+    id_solicitud_baja: number | null
+    id_empleado: number | null
+    fecha_solicitud: Date | null
+    motivo: string | null
+    estado: string | null
+    fecha_resolucion: Date | null
+    motivo_resolucion: string | null
+  }
+
+  export type Rrhh_solicitud_bajaCountAggregateOutputType = {
+    id_solicitud_baja: number
+    id_empleado: number
+    fecha_solicitud: number
+    motivo: number
+    estado: number
+    fecha_resolucion: number
+    motivo_resolucion: number
+    _all: number
+  }
+
+
+  export type Rrhh_solicitud_bajaAvgAggregateInputType = {
+    id_solicitud_baja?: true
+    id_empleado?: true
+  }
+
+  export type Rrhh_solicitud_bajaSumAggregateInputType = {
+    id_solicitud_baja?: true
+    id_empleado?: true
+  }
+
+  export type Rrhh_solicitud_bajaMinAggregateInputType = {
+    id_solicitud_baja?: true
+    id_empleado?: true
+    fecha_solicitud?: true
+    motivo?: true
+    estado?: true
+    fecha_resolucion?: true
+    motivo_resolucion?: true
+  }
+
+  export type Rrhh_solicitud_bajaMaxAggregateInputType = {
+    id_solicitud_baja?: true
+    id_empleado?: true
+    fecha_solicitud?: true
+    motivo?: true
+    estado?: true
+    fecha_resolucion?: true
+    motivo_resolucion?: true
+  }
+
+  export type Rrhh_solicitud_bajaCountAggregateInputType = {
+    id_solicitud_baja?: true
+    id_empleado?: true
+    fecha_solicitud?: true
+    motivo?: true
+    estado?: true
+    fecha_resolucion?: true
+    motivo_resolucion?: true
+    _all?: true
+  }
+
+  export type Rrhh_solicitud_bajaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which rrhh_solicitud_baja to aggregate.
+     */
+    where?: rrhh_solicitud_bajaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of rrhh_solicitud_bajas to fetch.
+     */
+    orderBy?: rrhh_solicitud_bajaOrderByWithRelationInput | rrhh_solicitud_bajaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: rrhh_solicitud_bajaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` rrhh_solicitud_bajas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` rrhh_solicitud_bajas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned rrhh_solicitud_bajas
+    **/
+    _count?: true | Rrhh_solicitud_bajaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Rrhh_solicitud_bajaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Rrhh_solicitud_bajaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Rrhh_solicitud_bajaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Rrhh_solicitud_bajaMaxAggregateInputType
+  }
+
+  export type GetRrhh_solicitud_bajaAggregateType<T extends Rrhh_solicitud_bajaAggregateArgs> = {
+        [P in keyof T & keyof AggregateRrhh_solicitud_baja]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRrhh_solicitud_baja[P]>
+      : GetScalarType<T[P], AggregateRrhh_solicitud_baja[P]>
+  }
+
+
+
+
+  export type rrhh_solicitud_bajaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: rrhh_solicitud_bajaWhereInput
+    orderBy?: rrhh_solicitud_bajaOrderByWithAggregationInput | rrhh_solicitud_bajaOrderByWithAggregationInput[]
+    by: Rrhh_solicitud_bajaScalarFieldEnum[] | Rrhh_solicitud_bajaScalarFieldEnum
+    having?: rrhh_solicitud_bajaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Rrhh_solicitud_bajaCountAggregateInputType | true
+    _avg?: Rrhh_solicitud_bajaAvgAggregateInputType
+    _sum?: Rrhh_solicitud_bajaSumAggregateInputType
+    _min?: Rrhh_solicitud_bajaMinAggregateInputType
+    _max?: Rrhh_solicitud_bajaMaxAggregateInputType
+  }
+
+  export type Rrhh_solicitud_bajaGroupByOutputType = {
+    id_solicitud_baja: number
+    id_empleado: number
+    fecha_solicitud: Date
+    motivo: string
+    estado: string
+    fecha_resolucion: Date | null
+    motivo_resolucion: string | null
+    _count: Rrhh_solicitud_bajaCountAggregateOutputType | null
+    _avg: Rrhh_solicitud_bajaAvgAggregateOutputType | null
+    _sum: Rrhh_solicitud_bajaSumAggregateOutputType | null
+    _min: Rrhh_solicitud_bajaMinAggregateOutputType | null
+    _max: Rrhh_solicitud_bajaMaxAggregateOutputType | null
+  }
+
+  type GetRrhh_solicitud_bajaGroupByPayload<T extends rrhh_solicitud_bajaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Rrhh_solicitud_bajaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Rrhh_solicitud_bajaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Rrhh_solicitud_bajaGroupByOutputType[P]>
+            : GetScalarType<T[P], Rrhh_solicitud_bajaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type rrhh_solicitud_bajaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_solicitud_baja?: boolean
+    id_empleado?: boolean
+    fecha_solicitud?: boolean
+    motivo?: boolean
+    estado?: boolean
+    fecha_resolucion?: boolean
+    motivo_resolucion?: boolean
+    empleado?: boolean | empleadoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rrhh_solicitud_baja"]>
+
+  export type rrhh_solicitud_bajaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_solicitud_baja?: boolean
+    id_empleado?: boolean
+    fecha_solicitud?: boolean
+    motivo?: boolean
+    estado?: boolean
+    fecha_resolucion?: boolean
+    motivo_resolucion?: boolean
+    empleado?: boolean | empleadoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rrhh_solicitud_baja"]>
+
+  export type rrhh_solicitud_bajaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_solicitud_baja?: boolean
+    id_empleado?: boolean
+    fecha_solicitud?: boolean
+    motivo?: boolean
+    estado?: boolean
+    fecha_resolucion?: boolean
+    motivo_resolucion?: boolean
+    empleado?: boolean | empleadoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rrhh_solicitud_baja"]>
+
+  export type rrhh_solicitud_bajaSelectScalar = {
+    id_solicitud_baja?: boolean
+    id_empleado?: boolean
+    fecha_solicitud?: boolean
+    motivo?: boolean
+    estado?: boolean
+    fecha_resolucion?: boolean
+    motivo_resolucion?: boolean
+  }
+
+  export type rrhh_solicitud_bajaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_solicitud_baja" | "id_empleado" | "fecha_solicitud" | "motivo" | "estado" | "fecha_resolucion" | "motivo_resolucion", ExtArgs["result"]["rrhh_solicitud_baja"]>
+  export type rrhh_solicitud_bajaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empleado?: boolean | empleadoDefaultArgs<ExtArgs>
+  }
+  export type rrhh_solicitud_bajaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empleado?: boolean | empleadoDefaultArgs<ExtArgs>
+  }
+  export type rrhh_solicitud_bajaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    empleado?: boolean | empleadoDefaultArgs<ExtArgs>
+  }
+
+  export type $rrhh_solicitud_bajaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "rrhh_solicitud_baja"
+    objects: {
+      empleado: Prisma.$empleadoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id_solicitud_baja: number
+      id_empleado: number
+      fecha_solicitud: Date
+      motivo: string
+      estado: string
+      fecha_resolucion: Date | null
+      motivo_resolucion: string | null
+    }, ExtArgs["result"]["rrhh_solicitud_baja"]>
+    composites: {}
+  }
+
+  type rrhh_solicitud_bajaGetPayload<S extends boolean | null | undefined | rrhh_solicitud_bajaDefaultArgs> = $Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload, S>
+
+  type rrhh_solicitud_bajaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<rrhh_solicitud_bajaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Rrhh_solicitud_bajaCountAggregateInputType | true
+    }
+
+  export interface rrhh_solicitud_bajaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['rrhh_solicitud_baja'], meta: { name: 'rrhh_solicitud_baja' } }
+    /**
+     * Find zero or one Rrhh_solicitud_baja that matches the filter.
+     * @param {rrhh_solicitud_bajaFindUniqueArgs} args - Arguments to find a Rrhh_solicitud_baja
+     * @example
+     * // Get one Rrhh_solicitud_baja
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends rrhh_solicitud_bajaFindUniqueArgs>(args: SelectSubset<T, rrhh_solicitud_bajaFindUniqueArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Rrhh_solicitud_baja that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {rrhh_solicitud_bajaFindUniqueOrThrowArgs} args - Arguments to find a Rrhh_solicitud_baja
+     * @example
+     * // Get one Rrhh_solicitud_baja
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends rrhh_solicitud_bajaFindUniqueOrThrowArgs>(args: SelectSubset<T, rrhh_solicitud_bajaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Rrhh_solicitud_baja that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rrhh_solicitud_bajaFindFirstArgs} args - Arguments to find a Rrhh_solicitud_baja
+     * @example
+     * // Get one Rrhh_solicitud_baja
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends rrhh_solicitud_bajaFindFirstArgs>(args?: SelectSubset<T, rrhh_solicitud_bajaFindFirstArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Rrhh_solicitud_baja that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rrhh_solicitud_bajaFindFirstOrThrowArgs} args - Arguments to find a Rrhh_solicitud_baja
+     * @example
+     * // Get one Rrhh_solicitud_baja
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends rrhh_solicitud_bajaFindFirstOrThrowArgs>(args?: SelectSubset<T, rrhh_solicitud_bajaFindFirstOrThrowArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Rrhh_solicitud_bajas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rrhh_solicitud_bajaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Rrhh_solicitud_bajas
+     * const rrhh_solicitud_bajas = await prisma.rrhh_solicitud_baja.findMany()
+     * 
+     * // Get first 10 Rrhh_solicitud_bajas
+     * const rrhh_solicitud_bajas = await prisma.rrhh_solicitud_baja.findMany({ take: 10 })
+     * 
+     * // Only select the `id_solicitud_baja`
+     * const rrhh_solicitud_bajaWithId_solicitud_bajaOnly = await prisma.rrhh_solicitud_baja.findMany({ select: { id_solicitud_baja: true } })
+     * 
+     */
+    findMany<T extends rrhh_solicitud_bajaFindManyArgs>(args?: SelectSubset<T, rrhh_solicitud_bajaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Rrhh_solicitud_baja.
+     * @param {rrhh_solicitud_bajaCreateArgs} args - Arguments to create a Rrhh_solicitud_baja.
+     * @example
+     * // Create one Rrhh_solicitud_baja
+     * const Rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.create({
+     *   data: {
+     *     // ... data to create a Rrhh_solicitud_baja
+     *   }
+     * })
+     * 
+     */
+    create<T extends rrhh_solicitud_bajaCreateArgs>(args: SelectSubset<T, rrhh_solicitud_bajaCreateArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Rrhh_solicitud_bajas.
+     * @param {rrhh_solicitud_bajaCreateManyArgs} args - Arguments to create many Rrhh_solicitud_bajas.
+     * @example
+     * // Create many Rrhh_solicitud_bajas
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends rrhh_solicitud_bajaCreateManyArgs>(args?: SelectSubset<T, rrhh_solicitud_bajaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Rrhh_solicitud_bajas and returns the data saved in the database.
+     * @param {rrhh_solicitud_bajaCreateManyAndReturnArgs} args - Arguments to create many Rrhh_solicitud_bajas.
+     * @example
+     * // Create many Rrhh_solicitud_bajas
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Rrhh_solicitud_bajas and only return the `id_solicitud_baja`
+     * const rrhh_solicitud_bajaWithId_solicitud_bajaOnly = await prisma.rrhh_solicitud_baja.createManyAndReturn({
+     *   select: { id_solicitud_baja: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends rrhh_solicitud_bajaCreateManyAndReturnArgs>(args?: SelectSubset<T, rrhh_solicitud_bajaCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Rrhh_solicitud_baja.
+     * @param {rrhh_solicitud_bajaDeleteArgs} args - Arguments to delete one Rrhh_solicitud_baja.
+     * @example
+     * // Delete one Rrhh_solicitud_baja
+     * const Rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.delete({
+     *   where: {
+     *     // ... filter to delete one Rrhh_solicitud_baja
+     *   }
+     * })
+     * 
+     */
+    delete<T extends rrhh_solicitud_bajaDeleteArgs>(args: SelectSubset<T, rrhh_solicitud_bajaDeleteArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Rrhh_solicitud_baja.
+     * @param {rrhh_solicitud_bajaUpdateArgs} args - Arguments to update one Rrhh_solicitud_baja.
+     * @example
+     * // Update one Rrhh_solicitud_baja
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends rrhh_solicitud_bajaUpdateArgs>(args: SelectSubset<T, rrhh_solicitud_bajaUpdateArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Rrhh_solicitud_bajas.
+     * @param {rrhh_solicitud_bajaDeleteManyArgs} args - Arguments to filter Rrhh_solicitud_bajas to delete.
+     * @example
+     * // Delete a few Rrhh_solicitud_bajas
+     * const { count } = await prisma.rrhh_solicitud_baja.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends rrhh_solicitud_bajaDeleteManyArgs>(args?: SelectSubset<T, rrhh_solicitud_bajaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Rrhh_solicitud_bajas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rrhh_solicitud_bajaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Rrhh_solicitud_bajas
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends rrhh_solicitud_bajaUpdateManyArgs>(args: SelectSubset<T, rrhh_solicitud_bajaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Rrhh_solicitud_bajas and returns the data updated in the database.
+     * @param {rrhh_solicitud_bajaUpdateManyAndReturnArgs} args - Arguments to update many Rrhh_solicitud_bajas.
+     * @example
+     * // Update many Rrhh_solicitud_bajas
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Rrhh_solicitud_bajas and only return the `id_solicitud_baja`
+     * const rrhh_solicitud_bajaWithId_solicitud_bajaOnly = await prisma.rrhh_solicitud_baja.updateManyAndReturn({
+     *   select: { id_solicitud_baja: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends rrhh_solicitud_bajaUpdateManyAndReturnArgs>(args: SelectSubset<T, rrhh_solicitud_bajaUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Rrhh_solicitud_baja.
+     * @param {rrhh_solicitud_bajaUpsertArgs} args - Arguments to update or create a Rrhh_solicitud_baja.
+     * @example
+     * // Update or create a Rrhh_solicitud_baja
+     * const rrhh_solicitud_baja = await prisma.rrhh_solicitud_baja.upsert({
+     *   create: {
+     *     // ... data to create a Rrhh_solicitud_baja
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Rrhh_solicitud_baja we want to update
+     *   }
+     * })
+     */
+    upsert<T extends rrhh_solicitud_bajaUpsertArgs>(args: SelectSubset<T, rrhh_solicitud_bajaUpsertArgs<ExtArgs>>): Prisma__rrhh_solicitud_bajaClient<$Result.GetResult<Prisma.$rrhh_solicitud_bajaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Rrhh_solicitud_bajas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rrhh_solicitud_bajaCountArgs} args - Arguments to filter Rrhh_solicitud_bajas to count.
+     * @example
+     * // Count the number of Rrhh_solicitud_bajas
+     * const count = await prisma.rrhh_solicitud_baja.count({
+     *   where: {
+     *     // ... the filter for the Rrhh_solicitud_bajas we want to count
+     *   }
+     * })
+    **/
+    count<T extends rrhh_solicitud_bajaCountArgs>(
+      args?: Subset<T, rrhh_solicitud_bajaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Rrhh_solicitud_bajaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Rrhh_solicitud_baja.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Rrhh_solicitud_bajaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Rrhh_solicitud_bajaAggregateArgs>(args: Subset<T, Rrhh_solicitud_bajaAggregateArgs>): Prisma.PrismaPromise<GetRrhh_solicitud_bajaAggregateType<T>>
+
+    /**
+     * Group by Rrhh_solicitud_baja.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {rrhh_solicitud_bajaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends rrhh_solicitud_bajaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: rrhh_solicitud_bajaGroupByArgs['orderBy'] }
+        : { orderBy?: rrhh_solicitud_bajaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, rrhh_solicitud_bajaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRrhh_solicitud_bajaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the rrhh_solicitud_baja model
+   */
+  readonly fields: rrhh_solicitud_bajaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for rrhh_solicitud_baja.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__rrhh_solicitud_bajaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    empleado<T extends empleadoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, empleadoDefaultArgs<ExtArgs>>): Prisma__empleadoClient<$Result.GetResult<Prisma.$empleadoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the rrhh_solicitud_baja model
+   */
+  interface rrhh_solicitud_bajaFieldRefs {
+    readonly id_solicitud_baja: FieldRef<"rrhh_solicitud_baja", 'Int'>
+    readonly id_empleado: FieldRef<"rrhh_solicitud_baja", 'Int'>
+    readonly fecha_solicitud: FieldRef<"rrhh_solicitud_baja", 'DateTime'>
+    readonly motivo: FieldRef<"rrhh_solicitud_baja", 'String'>
+    readonly estado: FieldRef<"rrhh_solicitud_baja", 'String'>
+    readonly fecha_resolucion: FieldRef<"rrhh_solicitud_baja", 'DateTime'>
+    readonly motivo_resolucion: FieldRef<"rrhh_solicitud_baja", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * rrhh_solicitud_baja findUnique
+   */
+  export type rrhh_solicitud_bajaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * Filter, which rrhh_solicitud_baja to fetch.
+     */
+    where: rrhh_solicitud_bajaWhereUniqueInput
+  }
+
+  /**
+   * rrhh_solicitud_baja findUniqueOrThrow
+   */
+  export type rrhh_solicitud_bajaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * Filter, which rrhh_solicitud_baja to fetch.
+     */
+    where: rrhh_solicitud_bajaWhereUniqueInput
+  }
+
+  /**
+   * rrhh_solicitud_baja findFirst
+   */
+  export type rrhh_solicitud_bajaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * Filter, which rrhh_solicitud_baja to fetch.
+     */
+    where?: rrhh_solicitud_bajaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of rrhh_solicitud_bajas to fetch.
+     */
+    orderBy?: rrhh_solicitud_bajaOrderByWithRelationInput | rrhh_solicitud_bajaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for rrhh_solicitud_bajas.
+     */
+    cursor?: rrhh_solicitud_bajaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` rrhh_solicitud_bajas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` rrhh_solicitud_bajas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of rrhh_solicitud_bajas.
+     */
+    distinct?: Rrhh_solicitud_bajaScalarFieldEnum | Rrhh_solicitud_bajaScalarFieldEnum[]
+  }
+
+  /**
+   * rrhh_solicitud_baja findFirstOrThrow
+   */
+  export type rrhh_solicitud_bajaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * Filter, which rrhh_solicitud_baja to fetch.
+     */
+    where?: rrhh_solicitud_bajaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of rrhh_solicitud_bajas to fetch.
+     */
+    orderBy?: rrhh_solicitud_bajaOrderByWithRelationInput | rrhh_solicitud_bajaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for rrhh_solicitud_bajas.
+     */
+    cursor?: rrhh_solicitud_bajaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` rrhh_solicitud_bajas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` rrhh_solicitud_bajas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of rrhh_solicitud_bajas.
+     */
+    distinct?: Rrhh_solicitud_bajaScalarFieldEnum | Rrhh_solicitud_bajaScalarFieldEnum[]
+  }
+
+  /**
+   * rrhh_solicitud_baja findMany
+   */
+  export type rrhh_solicitud_bajaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * Filter, which rrhh_solicitud_bajas to fetch.
+     */
+    where?: rrhh_solicitud_bajaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of rrhh_solicitud_bajas to fetch.
+     */
+    orderBy?: rrhh_solicitud_bajaOrderByWithRelationInput | rrhh_solicitud_bajaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing rrhh_solicitud_bajas.
+     */
+    cursor?: rrhh_solicitud_bajaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` rrhh_solicitud_bajas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` rrhh_solicitud_bajas.
+     */
+    skip?: number
+    distinct?: Rrhh_solicitud_bajaScalarFieldEnum | Rrhh_solicitud_bajaScalarFieldEnum[]
+  }
+
+  /**
+   * rrhh_solicitud_baja create
+   */
+  export type rrhh_solicitud_bajaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a rrhh_solicitud_baja.
+     */
+    data: XOR<rrhh_solicitud_bajaCreateInput, rrhh_solicitud_bajaUncheckedCreateInput>
+  }
+
+  /**
+   * rrhh_solicitud_baja createMany
+   */
+  export type rrhh_solicitud_bajaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many rrhh_solicitud_bajas.
+     */
+    data: rrhh_solicitud_bajaCreateManyInput | rrhh_solicitud_bajaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * rrhh_solicitud_baja createManyAndReturn
+   */
+  export type rrhh_solicitud_bajaCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * The data used to create many rrhh_solicitud_bajas.
+     */
+    data: rrhh_solicitud_bajaCreateManyInput | rrhh_solicitud_bajaCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * rrhh_solicitud_baja update
+   */
+  export type rrhh_solicitud_bajaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a rrhh_solicitud_baja.
+     */
+    data: XOR<rrhh_solicitud_bajaUpdateInput, rrhh_solicitud_bajaUncheckedUpdateInput>
+    /**
+     * Choose, which rrhh_solicitud_baja to update.
+     */
+    where: rrhh_solicitud_bajaWhereUniqueInput
+  }
+
+  /**
+   * rrhh_solicitud_baja updateMany
+   */
+  export type rrhh_solicitud_bajaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update rrhh_solicitud_bajas.
+     */
+    data: XOR<rrhh_solicitud_bajaUpdateManyMutationInput, rrhh_solicitud_bajaUncheckedUpdateManyInput>
+    /**
+     * Filter which rrhh_solicitud_bajas to update
+     */
+    where?: rrhh_solicitud_bajaWhereInput
+    /**
+     * Limit how many rrhh_solicitud_bajas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * rrhh_solicitud_baja updateManyAndReturn
+   */
+  export type rrhh_solicitud_bajaUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * The data used to update rrhh_solicitud_bajas.
+     */
+    data: XOR<rrhh_solicitud_bajaUpdateManyMutationInput, rrhh_solicitud_bajaUncheckedUpdateManyInput>
+    /**
+     * Filter which rrhh_solicitud_bajas to update
+     */
+    where?: rrhh_solicitud_bajaWhereInput
+    /**
+     * Limit how many rrhh_solicitud_bajas to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * rrhh_solicitud_baja upsert
+   */
+  export type rrhh_solicitud_bajaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the rrhh_solicitud_baja to update in case it exists.
+     */
+    where: rrhh_solicitud_bajaWhereUniqueInput
+    /**
+     * In case the rrhh_solicitud_baja found by the `where` argument doesn't exist, create a new rrhh_solicitud_baja with this data.
+     */
+    create: XOR<rrhh_solicitud_bajaCreateInput, rrhh_solicitud_bajaUncheckedCreateInput>
+    /**
+     * In case the rrhh_solicitud_baja was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<rrhh_solicitud_bajaUpdateInput, rrhh_solicitud_bajaUncheckedUpdateInput>
+  }
+
+  /**
+   * rrhh_solicitud_baja delete
+   */
+  export type rrhh_solicitud_bajaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
+    /**
+     * Filter which rrhh_solicitud_baja to delete.
+     */
+    where: rrhh_solicitud_bajaWhereUniqueInput
+  }
+
+  /**
+   * rrhh_solicitud_baja deleteMany
+   */
+  export type rrhh_solicitud_bajaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which rrhh_solicitud_bajas to delete
+     */
+    where?: rrhh_solicitud_bajaWhereInput
+    /**
+     * Limit how many rrhh_solicitud_bajas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * rrhh_solicitud_baja without action
+   */
+  export type rrhh_solicitud_bajaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the rrhh_solicitud_baja
+     */
+    select?: rrhh_solicitud_bajaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the rrhh_solicitud_baja
+     */
+    omit?: rrhh_solicitud_bajaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: rrhh_solicitud_bajaInclude<ExtArgs> | null
   }
 
 
@@ -8142,6 +9392,19 @@ export namespace Prisma {
   export type EmpleadoScalarFieldEnum = (typeof EmpleadoScalarFieldEnum)[keyof typeof EmpleadoScalarFieldEnum]
 
 
+  export const Rrhh_solicitud_bajaScalarFieldEnum: {
+    id_solicitud_baja: 'id_solicitud_baja',
+    id_empleado: 'id_empleado',
+    fecha_solicitud: 'fecha_solicitud',
+    motivo: 'motivo',
+    estado: 'estado',
+    fecha_resolucion: 'fecha_resolucion',
+    motivo_resolucion: 'motivo_resolucion'
+  };
+
+  export type Rrhh_solicitud_bajaScalarFieldEnum = (typeof Rrhh_solicitud_bajaScalarFieldEnum)[keyof typeof Rrhh_solicitud_bajaScalarFieldEnum]
+
+
   export const Rrhh_departamentoScalarFieldEnum: {
     id_departamento: 'id_departamento',
     nombre: 'nombre'
@@ -8306,6 +9569,7 @@ export namespace Prisma {
     roles?: Rrhh_empleado_rolListRelationFilter
     usuario?: XOR<Rrhh_usuarioNullableScalarRelationFilter, rrhh_usuarioWhereInput> | null
     departamento?: XOR<Rrhh_departamentoScalarRelationFilter, rrhh_departamentoWhereInput>
+    solicitudes_baja?: Rrhh_solicitud_bajaListRelationFilter
   }
 
   export type empleadoOrderByWithRelationInput = {
@@ -8325,6 +9589,7 @@ export namespace Prisma {
     roles?: rrhh_empleado_rolOrderByRelationAggregateInput
     usuario?: rrhh_usuarioOrderByWithRelationInput
     departamento?: rrhh_departamentoOrderByWithRelationInput
+    solicitudes_baja?: rrhh_solicitud_bajaOrderByRelationAggregateInput
   }
 
   export type empleadoWhereUniqueInput = Prisma.AtLeast<{
@@ -8347,6 +9612,7 @@ export namespace Prisma {
     roles?: Rrhh_empleado_rolListRelationFilter
     usuario?: XOR<Rrhh_usuarioNullableScalarRelationFilter, rrhh_usuarioWhereInput> | null
     departamento?: XOR<Rrhh_departamentoScalarRelationFilter, rrhh_departamentoWhereInput>
+    solicitudes_baja?: Rrhh_solicitud_bajaListRelationFilter
   }, "id_empleado" | "rut" | "email">
 
   export type empleadoOrderByWithAggregationInput = {
@@ -8385,6 +9651,73 @@ export namespace Prisma {
     estado?: StringWithAggregatesFilter<"empleado"> | string
     fecha_baja?: DateTimeNullableWithAggregatesFilter<"empleado"> | Date | string | null
     motivo_baja?: StringNullableWithAggregatesFilter<"empleado"> | string | null
+  }
+
+  export type rrhh_solicitud_bajaWhereInput = {
+    AND?: rrhh_solicitud_bajaWhereInput | rrhh_solicitud_bajaWhereInput[]
+    OR?: rrhh_solicitud_bajaWhereInput[]
+    NOT?: rrhh_solicitud_bajaWhereInput | rrhh_solicitud_bajaWhereInput[]
+    id_solicitud_baja?: IntFilter<"rrhh_solicitud_baja"> | number
+    id_empleado?: IntFilter<"rrhh_solicitud_baja"> | number
+    fecha_solicitud?: DateTimeFilter<"rrhh_solicitud_baja"> | Date | string
+    motivo?: StringFilter<"rrhh_solicitud_baja"> | string
+    estado?: StringFilter<"rrhh_solicitud_baja"> | string
+    fecha_resolucion?: DateTimeNullableFilter<"rrhh_solicitud_baja"> | Date | string | null
+    motivo_resolucion?: StringNullableFilter<"rrhh_solicitud_baja"> | string | null
+    empleado?: XOR<EmpleadoScalarRelationFilter, empleadoWhereInput>
+  }
+
+  export type rrhh_solicitud_bajaOrderByWithRelationInput = {
+    id_solicitud_baja?: SortOrder
+    id_empleado?: SortOrder
+    fecha_solicitud?: SortOrder
+    motivo?: SortOrder
+    estado?: SortOrder
+    fecha_resolucion?: SortOrderInput | SortOrder
+    motivo_resolucion?: SortOrderInput | SortOrder
+    empleado?: empleadoOrderByWithRelationInput
+  }
+
+  export type rrhh_solicitud_bajaWhereUniqueInput = Prisma.AtLeast<{
+    id_solicitud_baja?: number
+    AND?: rrhh_solicitud_bajaWhereInput | rrhh_solicitud_bajaWhereInput[]
+    OR?: rrhh_solicitud_bajaWhereInput[]
+    NOT?: rrhh_solicitud_bajaWhereInput | rrhh_solicitud_bajaWhereInput[]
+    id_empleado?: IntFilter<"rrhh_solicitud_baja"> | number
+    fecha_solicitud?: DateTimeFilter<"rrhh_solicitud_baja"> | Date | string
+    motivo?: StringFilter<"rrhh_solicitud_baja"> | string
+    estado?: StringFilter<"rrhh_solicitud_baja"> | string
+    fecha_resolucion?: DateTimeNullableFilter<"rrhh_solicitud_baja"> | Date | string | null
+    motivo_resolucion?: StringNullableFilter<"rrhh_solicitud_baja"> | string | null
+    empleado?: XOR<EmpleadoScalarRelationFilter, empleadoWhereInput>
+  }, "id_solicitud_baja">
+
+  export type rrhh_solicitud_bajaOrderByWithAggregationInput = {
+    id_solicitud_baja?: SortOrder
+    id_empleado?: SortOrder
+    fecha_solicitud?: SortOrder
+    motivo?: SortOrder
+    estado?: SortOrder
+    fecha_resolucion?: SortOrderInput | SortOrder
+    motivo_resolucion?: SortOrderInput | SortOrder
+    _count?: rrhh_solicitud_bajaCountOrderByAggregateInput
+    _avg?: rrhh_solicitud_bajaAvgOrderByAggregateInput
+    _max?: rrhh_solicitud_bajaMaxOrderByAggregateInput
+    _min?: rrhh_solicitud_bajaMinOrderByAggregateInput
+    _sum?: rrhh_solicitud_bajaSumOrderByAggregateInput
+  }
+
+  export type rrhh_solicitud_bajaScalarWhereWithAggregatesInput = {
+    AND?: rrhh_solicitud_bajaScalarWhereWithAggregatesInput | rrhh_solicitud_bajaScalarWhereWithAggregatesInput[]
+    OR?: rrhh_solicitud_bajaScalarWhereWithAggregatesInput[]
+    NOT?: rrhh_solicitud_bajaScalarWhereWithAggregatesInput | rrhh_solicitud_bajaScalarWhereWithAggregatesInput[]
+    id_solicitud_baja?: IntWithAggregatesFilter<"rrhh_solicitud_baja"> | number
+    id_empleado?: IntWithAggregatesFilter<"rrhh_solicitud_baja"> | number
+    fecha_solicitud?: DateTimeWithAggregatesFilter<"rrhh_solicitud_baja"> | Date | string
+    motivo?: StringWithAggregatesFilter<"rrhh_solicitud_baja"> | string
+    estado?: StringWithAggregatesFilter<"rrhh_solicitud_baja"> | string
+    fecha_resolucion?: DateTimeNullableWithAggregatesFilter<"rrhh_solicitud_baja"> | Date | string | null
+    motivo_resolucion?: StringNullableWithAggregatesFilter<"rrhh_solicitud_baja"> | string | null
   }
 
   export type rrhh_departamentoWhereInput = {
@@ -8661,6 +9994,7 @@ export namespace Prisma {
     roles?: rrhh_empleado_rolCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioCreateNestedOneWithoutEmpleadoInput
     departamento: rrhh_departamentoCreateNestedOneWithoutEmpleadosInput
+    solicitudes_baja?: rrhh_solicitud_bajaCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoUncheckedCreateInput = {
@@ -8679,6 +10013,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaUncheckedCreateNestedManyWithoutEmpleadoInput
     roles?: rrhh_empleado_rolUncheckedCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioUncheckedCreateNestedOneWithoutEmpleadoInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoUpdateInput = {
@@ -8696,6 +10031,7 @@ export namespace Prisma {
     roles?: rrhh_empleado_rolUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUpdateOneWithoutEmpleadoNestedInput
     departamento?: rrhh_departamentoUpdateOneRequiredWithoutEmpleadosNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type empleadoUncheckedUpdateInput = {
@@ -8714,6 +10050,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaUncheckedUpdateManyWithoutEmpleadoNestedInput
     roles?: rrhh_empleado_rolUncheckedUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUncheckedUpdateOneWithoutEmpleadoNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type empleadoCreateManyInput = {
@@ -8757,6 +10094,72 @@ export namespace Prisma {
     estado?: StringFieldUpdateOperationsInput | string
     fecha_baja?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     motivo_baja?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type rrhh_solicitud_bajaCreateInput = {
+    fecha_solicitud?: Date | string
+    motivo: string
+    estado?: string
+    fecha_resolucion?: Date | string | null
+    motivo_resolucion?: string | null
+    empleado: empleadoCreateNestedOneWithoutSolicitudes_bajaInput
+  }
+
+  export type rrhh_solicitud_bajaUncheckedCreateInput = {
+    id_solicitud_baja?: number
+    id_empleado: number
+    fecha_solicitud?: Date | string
+    motivo: string
+    estado?: string
+    fecha_resolucion?: Date | string | null
+    motivo_resolucion?: string | null
+  }
+
+  export type rrhh_solicitud_bajaUpdateInput = {
+    fecha_solicitud?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivo?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_resolucion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_resolucion?: NullableStringFieldUpdateOperationsInput | string | null
+    empleado?: empleadoUpdateOneRequiredWithoutSolicitudes_bajaNestedInput
+  }
+
+  export type rrhh_solicitud_bajaUncheckedUpdateInput = {
+    id_solicitud_baja?: IntFieldUpdateOperationsInput | number
+    id_empleado?: IntFieldUpdateOperationsInput | number
+    fecha_solicitud?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivo?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_resolucion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_resolucion?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type rrhh_solicitud_bajaCreateManyInput = {
+    id_solicitud_baja?: number
+    id_empleado: number
+    fecha_solicitud?: Date | string
+    motivo: string
+    estado?: string
+    fecha_resolucion?: Date | string | null
+    motivo_resolucion?: string | null
+  }
+
+  export type rrhh_solicitud_bajaUpdateManyMutationInput = {
+    fecha_solicitud?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivo?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_resolucion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_resolucion?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type rrhh_solicitud_bajaUncheckedUpdateManyInput = {
+    id_solicitud_baja?: IntFieldUpdateOperationsInput | number
+    id_empleado?: IntFieldUpdateOperationsInput | number
+    fecha_solicitud?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivo?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_resolucion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_resolucion?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type rrhh_departamentoCreateInput = {
@@ -9075,6 +10478,12 @@ export namespace Prisma {
     isNot?: rrhh_departamentoWhereInput
   }
 
+  export type Rrhh_solicitud_bajaListRelationFilter = {
+    every?: rrhh_solicitud_bajaWhereInput
+    some?: rrhh_solicitud_bajaWhereInput
+    none?: rrhh_solicitud_bajaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -9085,6 +10494,10 @@ export namespace Prisma {
   }
 
   export type rrhh_empleado_rolOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type rrhh_solicitud_bajaOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9223,6 +10636,51 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type EmpleadoScalarRelationFilter = {
+    is?: empleadoWhereInput
+    isNot?: empleadoWhereInput
+  }
+
+  export type rrhh_solicitud_bajaCountOrderByAggregateInput = {
+    id_solicitud_baja?: SortOrder
+    id_empleado?: SortOrder
+    fecha_solicitud?: SortOrder
+    motivo?: SortOrder
+    estado?: SortOrder
+    fecha_resolucion?: SortOrder
+    motivo_resolucion?: SortOrder
+  }
+
+  export type rrhh_solicitud_bajaAvgOrderByAggregateInput = {
+    id_solicitud_baja?: SortOrder
+    id_empleado?: SortOrder
+  }
+
+  export type rrhh_solicitud_bajaMaxOrderByAggregateInput = {
+    id_solicitud_baja?: SortOrder
+    id_empleado?: SortOrder
+    fecha_solicitud?: SortOrder
+    motivo?: SortOrder
+    estado?: SortOrder
+    fecha_resolucion?: SortOrder
+    motivo_resolucion?: SortOrder
+  }
+
+  export type rrhh_solicitud_bajaMinOrderByAggregateInput = {
+    id_solicitud_baja?: SortOrder
+    id_empleado?: SortOrder
+    fecha_solicitud?: SortOrder
+    motivo?: SortOrder
+    estado?: SortOrder
+    fecha_resolucion?: SortOrder
+    motivo_resolucion?: SortOrder
+  }
+
+  export type rrhh_solicitud_bajaSumOrderByAggregateInput = {
+    id_solicitud_baja?: SortOrder
+    id_empleado?: SortOrder
+  }
+
   export type EmpleadoListRelationFilter = {
     every?: empleadoWhereInput
     some?: empleadoWhereInput
@@ -9259,11 +10717,6 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type EmpleadoScalarRelationFilter = {
-    is?: empleadoWhereInput
-    isNot?: empleadoWhereInput
   }
 
   export type rrhh_usuarioCountOrderByAggregateInput = {
@@ -9435,6 +10888,13 @@ export namespace Prisma {
     connect?: rrhh_departamentoWhereUniqueInput
   }
 
+  export type rrhh_solicitud_bajaCreateNestedManyWithoutEmpleadoInput = {
+    create?: XOR<rrhh_solicitud_bajaCreateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput> | rrhh_solicitud_bajaCreateWithoutEmpleadoInput[] | rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput[]
+    connectOrCreate?: rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput | rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput[]
+    createMany?: rrhh_solicitud_bajaCreateManyEmpleadoInputEnvelope
+    connect?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+  }
+
   export type rrhh_ausenciaUncheckedCreateNestedManyWithoutEmpleadoInput = {
     create?: XOR<rrhh_ausenciaCreateWithoutEmpleadoInput, rrhh_ausenciaUncheckedCreateWithoutEmpleadoInput> | rrhh_ausenciaCreateWithoutEmpleadoInput[] | rrhh_ausenciaUncheckedCreateWithoutEmpleadoInput[]
     connectOrCreate?: rrhh_ausenciaCreateOrConnectWithoutEmpleadoInput | rrhh_ausenciaCreateOrConnectWithoutEmpleadoInput[]
@@ -9453,6 +10913,13 @@ export namespace Prisma {
     create?: XOR<rrhh_usuarioCreateWithoutEmpleadoInput, rrhh_usuarioUncheckedCreateWithoutEmpleadoInput>
     connectOrCreate?: rrhh_usuarioCreateOrConnectWithoutEmpleadoInput
     connect?: rrhh_usuarioWhereUniqueInput
+  }
+
+  export type rrhh_solicitud_bajaUncheckedCreateNestedManyWithoutEmpleadoInput = {
+    create?: XOR<rrhh_solicitud_bajaCreateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput> | rrhh_solicitud_bajaCreateWithoutEmpleadoInput[] | rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput[]
+    connectOrCreate?: rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput | rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput[]
+    createMany?: rrhh_solicitud_bajaCreateManyEmpleadoInputEnvelope
+    connect?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9517,6 +10984,20 @@ export namespace Prisma {
     update?: XOR<XOR<rrhh_departamentoUpdateToOneWithWhereWithoutEmpleadosInput, rrhh_departamentoUpdateWithoutEmpleadosInput>, rrhh_departamentoUncheckedUpdateWithoutEmpleadosInput>
   }
 
+  export type rrhh_solicitud_bajaUpdateManyWithoutEmpleadoNestedInput = {
+    create?: XOR<rrhh_solicitud_bajaCreateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput> | rrhh_solicitud_bajaCreateWithoutEmpleadoInput[] | rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput[]
+    connectOrCreate?: rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput | rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput[]
+    upsert?: rrhh_solicitud_bajaUpsertWithWhereUniqueWithoutEmpleadoInput | rrhh_solicitud_bajaUpsertWithWhereUniqueWithoutEmpleadoInput[]
+    createMany?: rrhh_solicitud_bajaCreateManyEmpleadoInputEnvelope
+    set?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    disconnect?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    delete?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    connect?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    update?: rrhh_solicitud_bajaUpdateWithWhereUniqueWithoutEmpleadoInput | rrhh_solicitud_bajaUpdateWithWhereUniqueWithoutEmpleadoInput[]
+    updateMany?: rrhh_solicitud_bajaUpdateManyWithWhereWithoutEmpleadoInput | rrhh_solicitud_bajaUpdateManyWithWhereWithoutEmpleadoInput[]
+    deleteMany?: rrhh_solicitud_bajaScalarWhereInput | rrhh_solicitud_bajaScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9561,6 +11042,34 @@ export namespace Prisma {
     delete?: rrhh_usuarioWhereInput | boolean
     connect?: rrhh_usuarioWhereUniqueInput
     update?: XOR<XOR<rrhh_usuarioUpdateToOneWithWhereWithoutEmpleadoInput, rrhh_usuarioUpdateWithoutEmpleadoInput>, rrhh_usuarioUncheckedUpdateWithoutEmpleadoInput>
+  }
+
+  export type rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoNestedInput = {
+    create?: XOR<rrhh_solicitud_bajaCreateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput> | rrhh_solicitud_bajaCreateWithoutEmpleadoInput[] | rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput[]
+    connectOrCreate?: rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput | rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput[]
+    upsert?: rrhh_solicitud_bajaUpsertWithWhereUniqueWithoutEmpleadoInput | rrhh_solicitud_bajaUpsertWithWhereUniqueWithoutEmpleadoInput[]
+    createMany?: rrhh_solicitud_bajaCreateManyEmpleadoInputEnvelope
+    set?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    disconnect?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    delete?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    connect?: rrhh_solicitud_bajaWhereUniqueInput | rrhh_solicitud_bajaWhereUniqueInput[]
+    update?: rrhh_solicitud_bajaUpdateWithWhereUniqueWithoutEmpleadoInput | rrhh_solicitud_bajaUpdateWithWhereUniqueWithoutEmpleadoInput[]
+    updateMany?: rrhh_solicitud_bajaUpdateManyWithWhereWithoutEmpleadoInput | rrhh_solicitud_bajaUpdateManyWithWhereWithoutEmpleadoInput[]
+    deleteMany?: rrhh_solicitud_bajaScalarWhereInput | rrhh_solicitud_bajaScalarWhereInput[]
+  }
+
+  export type empleadoCreateNestedOneWithoutSolicitudes_bajaInput = {
+    create?: XOR<empleadoCreateWithoutSolicitudes_bajaInput, empleadoUncheckedCreateWithoutSolicitudes_bajaInput>
+    connectOrCreate?: empleadoCreateOrConnectWithoutSolicitudes_bajaInput
+    connect?: empleadoWhereUniqueInput
+  }
+
+  export type empleadoUpdateOneRequiredWithoutSolicitudes_bajaNestedInput = {
+    create?: XOR<empleadoCreateWithoutSolicitudes_bajaInput, empleadoUncheckedCreateWithoutSolicitudes_bajaInput>
+    connectOrCreate?: empleadoCreateOrConnectWithoutSolicitudes_bajaInput
+    upsert?: empleadoUpsertWithoutSolicitudes_bajaInput
+    connect?: empleadoWhereUniqueInput
+    update?: XOR<XOR<empleadoUpdateToOneWithWhereWithoutSolicitudes_bajaInput, empleadoUpdateWithoutSolicitudes_bajaInput>, empleadoUncheckedUpdateWithoutSolicitudes_bajaInput>
   }
 
   export type empleadoCreateNestedManyWithoutDepartamentoInput = {
@@ -9958,6 +11467,33 @@ export namespace Prisma {
     create: XOR<rrhh_departamentoCreateWithoutEmpleadosInput, rrhh_departamentoUncheckedCreateWithoutEmpleadosInput>
   }
 
+  export type rrhh_solicitud_bajaCreateWithoutEmpleadoInput = {
+    fecha_solicitud?: Date | string
+    motivo: string
+    estado?: string
+    fecha_resolucion?: Date | string | null
+    motivo_resolucion?: string | null
+  }
+
+  export type rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput = {
+    id_solicitud_baja?: number
+    fecha_solicitud?: Date | string
+    motivo: string
+    estado?: string
+    fecha_resolucion?: Date | string | null
+    motivo_resolucion?: string | null
+  }
+
+  export type rrhh_solicitud_bajaCreateOrConnectWithoutEmpleadoInput = {
+    where: rrhh_solicitud_bajaWhereUniqueInput
+    create: XOR<rrhh_solicitud_bajaCreateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput>
+  }
+
+  export type rrhh_solicitud_bajaCreateManyEmpleadoInputEnvelope = {
+    data: rrhh_solicitud_bajaCreateManyEmpleadoInput | rrhh_solicitud_bajaCreateManyEmpleadoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type rrhh_ausenciaUpsertWithWhereUniqueWithoutEmpleadoInput = {
     where: rrhh_ausenciaWhereUniqueInput
     update: XOR<rrhh_ausenciaUpdateWithoutEmpleadoInput, rrhh_ausenciaUncheckedUpdateWithoutEmpleadoInput>
@@ -10054,6 +11590,121 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
   }
 
+  export type rrhh_solicitud_bajaUpsertWithWhereUniqueWithoutEmpleadoInput = {
+    where: rrhh_solicitud_bajaWhereUniqueInput
+    update: XOR<rrhh_solicitud_bajaUpdateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedUpdateWithoutEmpleadoInput>
+    create: XOR<rrhh_solicitud_bajaCreateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedCreateWithoutEmpleadoInput>
+  }
+
+  export type rrhh_solicitud_bajaUpdateWithWhereUniqueWithoutEmpleadoInput = {
+    where: rrhh_solicitud_bajaWhereUniqueInput
+    data: XOR<rrhh_solicitud_bajaUpdateWithoutEmpleadoInput, rrhh_solicitud_bajaUncheckedUpdateWithoutEmpleadoInput>
+  }
+
+  export type rrhh_solicitud_bajaUpdateManyWithWhereWithoutEmpleadoInput = {
+    where: rrhh_solicitud_bajaScalarWhereInput
+    data: XOR<rrhh_solicitud_bajaUpdateManyMutationInput, rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoInput>
+  }
+
+  export type rrhh_solicitud_bajaScalarWhereInput = {
+    AND?: rrhh_solicitud_bajaScalarWhereInput | rrhh_solicitud_bajaScalarWhereInput[]
+    OR?: rrhh_solicitud_bajaScalarWhereInput[]
+    NOT?: rrhh_solicitud_bajaScalarWhereInput | rrhh_solicitud_bajaScalarWhereInput[]
+    id_solicitud_baja?: IntFilter<"rrhh_solicitud_baja"> | number
+    id_empleado?: IntFilter<"rrhh_solicitud_baja"> | number
+    fecha_solicitud?: DateTimeFilter<"rrhh_solicitud_baja"> | Date | string
+    motivo?: StringFilter<"rrhh_solicitud_baja"> | string
+    estado?: StringFilter<"rrhh_solicitud_baja"> | string
+    fecha_resolucion?: DateTimeNullableFilter<"rrhh_solicitud_baja"> | Date | string | null
+    motivo_resolucion?: StringNullableFilter<"rrhh_solicitud_baja"> | string | null
+  }
+
+  export type empleadoCreateWithoutSolicitudes_bajaInput = {
+    rut: string
+    nombre: string
+    apellido: string
+    rol: string
+    email: string
+    telefono?: string | null
+    fecha_ingreso: Date | string
+    estado: string
+    fecha_baja?: Date | string | null
+    motivo_baja?: string | null
+    ausencias?: rrhh_ausenciaCreateNestedManyWithoutEmpleadoInput
+    roles?: rrhh_empleado_rolCreateNestedManyWithoutEmpleadoInput
+    usuario?: rrhh_usuarioCreateNestedOneWithoutEmpleadoInput
+    departamento: rrhh_departamentoCreateNestedOneWithoutEmpleadosInput
+  }
+
+  export type empleadoUncheckedCreateWithoutSolicitudes_bajaInput = {
+    id_empleado?: number
+    rut: string
+    nombre: string
+    apellido: string
+    rol: string
+    email: string
+    telefono?: string | null
+    fecha_ingreso: Date | string
+    id_departamento: number
+    estado: string
+    fecha_baja?: Date | string | null
+    motivo_baja?: string | null
+    ausencias?: rrhh_ausenciaUncheckedCreateNestedManyWithoutEmpleadoInput
+    roles?: rrhh_empleado_rolUncheckedCreateNestedManyWithoutEmpleadoInput
+    usuario?: rrhh_usuarioUncheckedCreateNestedOneWithoutEmpleadoInput
+  }
+
+  export type empleadoCreateOrConnectWithoutSolicitudes_bajaInput = {
+    where: empleadoWhereUniqueInput
+    create: XOR<empleadoCreateWithoutSolicitudes_bajaInput, empleadoUncheckedCreateWithoutSolicitudes_bajaInput>
+  }
+
+  export type empleadoUpsertWithoutSolicitudes_bajaInput = {
+    update: XOR<empleadoUpdateWithoutSolicitudes_bajaInput, empleadoUncheckedUpdateWithoutSolicitudes_bajaInput>
+    create: XOR<empleadoCreateWithoutSolicitudes_bajaInput, empleadoUncheckedCreateWithoutSolicitudes_bajaInput>
+    where?: empleadoWhereInput
+  }
+
+  export type empleadoUpdateToOneWithWhereWithoutSolicitudes_bajaInput = {
+    where?: empleadoWhereInput
+    data: XOR<empleadoUpdateWithoutSolicitudes_bajaInput, empleadoUncheckedUpdateWithoutSolicitudes_bajaInput>
+  }
+
+  export type empleadoUpdateWithoutSolicitudes_bajaInput = {
+    rut?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    fecha_ingreso?: DateTimeFieldUpdateOperationsInput | Date | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_baja?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_baja?: NullableStringFieldUpdateOperationsInput | string | null
+    ausencias?: rrhh_ausenciaUpdateManyWithoutEmpleadoNestedInput
+    roles?: rrhh_empleado_rolUpdateManyWithoutEmpleadoNestedInput
+    usuario?: rrhh_usuarioUpdateOneWithoutEmpleadoNestedInput
+    departamento?: rrhh_departamentoUpdateOneRequiredWithoutEmpleadosNestedInput
+  }
+
+  export type empleadoUncheckedUpdateWithoutSolicitudes_bajaInput = {
+    id_empleado?: IntFieldUpdateOperationsInput | number
+    rut?: StringFieldUpdateOperationsInput | string
+    nombre?: StringFieldUpdateOperationsInput | string
+    apellido?: StringFieldUpdateOperationsInput | string
+    rol?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    telefono?: NullableStringFieldUpdateOperationsInput | string | null
+    fecha_ingreso?: DateTimeFieldUpdateOperationsInput | Date | string
+    id_departamento?: IntFieldUpdateOperationsInput | number
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_baja?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_baja?: NullableStringFieldUpdateOperationsInput | string | null
+    ausencias?: rrhh_ausenciaUncheckedUpdateManyWithoutEmpleadoNestedInput
+    roles?: rrhh_empleado_rolUncheckedUpdateManyWithoutEmpleadoNestedInput
+    usuario?: rrhh_usuarioUncheckedUpdateOneWithoutEmpleadoNestedInput
+  }
+
   export type empleadoCreateWithoutDepartamentoInput = {
     rut: string
     nombre: string
@@ -10068,6 +11719,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaCreateNestedManyWithoutEmpleadoInput
     roles?: rrhh_empleado_rolCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioCreateNestedOneWithoutEmpleadoInput
+    solicitudes_baja?: rrhh_solicitud_bajaCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoUncheckedCreateWithoutDepartamentoInput = {
@@ -10085,6 +11737,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaUncheckedCreateNestedManyWithoutEmpleadoInput
     roles?: rrhh_empleado_rolUncheckedCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioUncheckedCreateNestedOneWithoutEmpleadoInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoCreateOrConnectWithoutDepartamentoInput = {
@@ -10145,6 +11798,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaCreateNestedManyWithoutEmpleadoInput
     roles?: rrhh_empleado_rolCreateNestedManyWithoutEmpleadoInput
     departamento: rrhh_departamentoCreateNestedOneWithoutEmpleadosInput
+    solicitudes_baja?: rrhh_solicitud_bajaCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoUncheckedCreateWithoutUsuarioInput = {
@@ -10162,6 +11816,7 @@ export namespace Prisma {
     motivo_baja?: string | null
     ausencias?: rrhh_ausenciaUncheckedCreateNestedManyWithoutEmpleadoInput
     roles?: rrhh_empleado_rolUncheckedCreateNestedManyWithoutEmpleadoInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoCreateOrConnectWithoutUsuarioInput = {
@@ -10194,6 +11849,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaUpdateManyWithoutEmpleadoNestedInput
     roles?: rrhh_empleado_rolUpdateManyWithoutEmpleadoNestedInput
     departamento?: rrhh_departamentoUpdateOneRequiredWithoutEmpleadosNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type empleadoUncheckedUpdateWithoutUsuarioInput = {
@@ -10211,6 +11867,7 @@ export namespace Prisma {
     motivo_baja?: NullableStringFieldUpdateOperationsInput | string | null
     ausencias?: rrhh_ausenciaUncheckedUpdateManyWithoutEmpleadoNestedInput
     roles?: rrhh_empleado_rolUncheckedUpdateManyWithoutEmpleadoNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type rrhh_empleado_rolCreateWithoutRolInput = {
@@ -10261,6 +11918,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioCreateNestedOneWithoutEmpleadoInput
     departamento: rrhh_departamentoCreateNestedOneWithoutEmpleadosInput
+    solicitudes_baja?: rrhh_solicitud_bajaCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoUncheckedCreateWithoutRolesInput = {
@@ -10278,6 +11936,7 @@ export namespace Prisma {
     motivo_baja?: string | null
     ausencias?: rrhh_ausenciaUncheckedCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioUncheckedCreateNestedOneWithoutEmpleadoInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoCreateOrConnectWithoutRolesInput = {
@@ -10326,6 +11985,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUpdateOneWithoutEmpleadoNestedInput
     departamento?: rrhh_departamentoUpdateOneRequiredWithoutEmpleadosNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type empleadoUncheckedUpdateWithoutRolesInput = {
@@ -10343,6 +12003,7 @@ export namespace Prisma {
     motivo_baja?: NullableStringFieldUpdateOperationsInput | string | null
     ausencias?: rrhh_ausenciaUncheckedUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUncheckedUpdateOneWithoutEmpleadoNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type rrhh_rolUpsertWithoutEmpleadosInput = {
@@ -10381,6 +12042,7 @@ export namespace Prisma {
     roles?: rrhh_empleado_rolCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioCreateNestedOneWithoutEmpleadoInput
     departamento: rrhh_departamentoCreateNestedOneWithoutEmpleadosInput
+    solicitudes_baja?: rrhh_solicitud_bajaCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoUncheckedCreateWithoutAusenciasInput = {
@@ -10398,6 +12060,7 @@ export namespace Prisma {
     motivo_baja?: string | null
     roles?: rrhh_empleado_rolUncheckedCreateNestedManyWithoutEmpleadoInput
     usuario?: rrhh_usuarioUncheckedCreateNestedOneWithoutEmpleadoInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedCreateNestedManyWithoutEmpleadoInput
   }
 
   export type empleadoCreateOrConnectWithoutAusenciasInput = {
@@ -10430,6 +12093,7 @@ export namespace Prisma {
     roles?: rrhh_empleado_rolUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUpdateOneWithoutEmpleadoNestedInput
     departamento?: rrhh_departamentoUpdateOneRequiredWithoutEmpleadosNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type empleadoUncheckedUpdateWithoutAusenciasInput = {
@@ -10447,6 +12111,7 @@ export namespace Prisma {
     motivo_baja?: NullableStringFieldUpdateOperationsInput | string | null
     roles?: rrhh_empleado_rolUncheckedUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUncheckedUpdateOneWithoutEmpleadoNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type rrhh_ausenciaCreateManyEmpleadoInput = {
@@ -10461,6 +12126,15 @@ export namespace Prisma {
 
   export type rrhh_empleado_rolCreateManyEmpleadoInput = {
     id_rol: number
+  }
+
+  export type rrhh_solicitud_bajaCreateManyEmpleadoInput = {
+    id_solicitud_baja?: number
+    fecha_solicitud?: Date | string
+    motivo: string
+    estado?: string
+    fecha_resolucion?: Date | string | null
+    motivo_resolucion?: string | null
   }
 
   export type rrhh_ausenciaUpdateWithoutEmpleadoInput = {
@@ -10504,6 +12178,32 @@ export namespace Prisma {
     id_rol?: IntFieldUpdateOperationsInput | number
   }
 
+  export type rrhh_solicitud_bajaUpdateWithoutEmpleadoInput = {
+    fecha_solicitud?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivo?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_resolucion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_resolucion?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type rrhh_solicitud_bajaUncheckedUpdateWithoutEmpleadoInput = {
+    id_solicitud_baja?: IntFieldUpdateOperationsInput | number
+    fecha_solicitud?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivo?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_resolucion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_resolucion?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoInput = {
+    id_solicitud_baja?: IntFieldUpdateOperationsInput | number
+    fecha_solicitud?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivo?: StringFieldUpdateOperationsInput | string
+    estado?: StringFieldUpdateOperationsInput | string
+    fecha_resolucion?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    motivo_resolucion?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type empleadoCreateManyDepartamentoInput = {
     id_empleado?: number
     rut: string
@@ -10532,6 +12232,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaUpdateManyWithoutEmpleadoNestedInput
     roles?: rrhh_empleado_rolUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUpdateOneWithoutEmpleadoNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type empleadoUncheckedUpdateWithoutDepartamentoInput = {
@@ -10549,6 +12250,7 @@ export namespace Prisma {
     ausencias?: rrhh_ausenciaUncheckedUpdateManyWithoutEmpleadoNestedInput
     roles?: rrhh_empleado_rolUncheckedUpdateManyWithoutEmpleadoNestedInput
     usuario?: rrhh_usuarioUncheckedUpdateOneWithoutEmpleadoNestedInput
+    solicitudes_baja?: rrhh_solicitud_bajaUncheckedUpdateManyWithoutEmpleadoNestedInput
   }
 
   export type empleadoUncheckedUpdateManyWithoutDepartamentoInput = {
