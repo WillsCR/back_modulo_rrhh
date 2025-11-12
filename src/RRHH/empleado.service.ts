@@ -1,7 +1,7 @@
 
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateEmpleadoDto } from './dto/empleado.dto';
+import { CreateEmpleadoDto, EmpleadoResponseDto } from './dto/empleado.dto';
 import { Prisma } from '../../generated/rrhh';
 import { FiltroEmpleadosDto, UpdateEmpleadoDto } from './dto/rrhh.dto';
 import { CreateSolicitudBajaDto, UpdateSolicitudBajaDto } from './dto/baja-empleados.dto';

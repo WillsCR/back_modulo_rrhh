@@ -39,3 +39,15 @@ export class BuscarEmpleadoDto {
   busqueda?: string;
 }
 
+export class EmpleadoResponseDto {
+  id_empleado: number;
+  rut: string;
+  nombre: string;
+  apellido: string;
+  email: string;
+  rol: string;
+  estado: string;
+  departamento: {
+    nombre: string;
+  };
+}
