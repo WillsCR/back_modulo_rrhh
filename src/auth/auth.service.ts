@@ -57,7 +57,8 @@ export class AuthService {
                 apellido: empleado.apellido,
                 email: empleado.email,
                 rol: empleado.rol,
-                roles: empleado.roles.map(r => r.rol.nombre)
+                roles: empleado.roles.map(r => r.rol.nombre),
+                id_departamento: empleado.id_departamento
             }
         };
     }
