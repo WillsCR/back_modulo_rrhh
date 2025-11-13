@@ -100,7 +100,8 @@ export class RrhhController {
             createAusenciaDto.id_empleado,
             new Date(createAusenciaDto.fecha_inicio),
             new Date(createAusenciaDto.fecha_fin),
-            createAusenciaDto.tipo
+            createAusenciaDto.tipo,
+            createAusenciaDto.motivo
         );
     }
 

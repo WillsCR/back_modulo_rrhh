@@ -18,7 +18,7 @@ export class AusenciaService {
     return ausencia;
   }
 
-  async solicitarAusencia(idEmpleado: number, inicio: Date, fin: Date, tipo: string = 'VACACIONES') {
+  async solicitarAusencia(idEmpleado: number, inicio: Date, fin: Date, tipo: string = 'VACACIONES', motivo: string) {
     const solapada = await this.prisma.rrhh_ausencia.findFirst({
       where: {
         id_empleado: idEmpleado,
@@ -37,9 +37,11 @@ export class AusenciaService {
       fecha_inicio: inicio,
       fecha_fin: fin,
       estado: 'PENDIENTE',
+      motivo,
       empleado: {
         connect: { id_empleado: idEmpleado }
       }
+      
     };
 
     return this.prisma.rrhh_ausencia.create({ data });
