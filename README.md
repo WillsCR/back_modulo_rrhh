@@ -124,3 +124,29 @@ npx prisma db pull
 ---
 
 
+
+
+
+--------------------------------------------------------------------------------------------
+
+Si solo quieres correr la app siempre que necesites:
+docker compose -f docker-compose.prod.yml up -d
+
+Si quieres detenerla:
+docker compose -f docker-compose.prod.yml down
+
+Si actualizas tu código:
+docker compose -f docker-compose.prod.yml up -d --build
+
+Para ver lo que imprime el backend dentro del contenedor:
+docker logs -f rrhh_app_prod
+
+Ver contenedores que están corriendo
+docker ps
+
+Si cambiaste solo archivos dentro del contenedor (no el código fuente), podrías necesitar recrearlo
+A veces si cambias cosas como .env, necesitas:
+docker compose -f docker-compose.prod.yml up -d --force-recreate
+
+Si cambiaste puertos, variables o volumenes → sí o sí rebuild
+docker compose -f docker-compose.prod.yml up -d --build
